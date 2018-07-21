@@ -11,7 +11,7 @@ contract  Regulator{
 contract Bank is Regulator{
     
     // Internal == protected
-    uint private value;
+    a private value;
     address private owner;
 
     // Fucntion modifier, ACL contract owner
@@ -19,7 +19,6 @@ contract Bank is Regulator{
         require(owner == msg.sender);
         _;
     }
-
     function Bank(uint amount) public {
         owner = msg.sender;
         value =amount;
