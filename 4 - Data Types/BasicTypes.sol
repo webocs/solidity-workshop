@@ -2,6 +2,8 @@ pragma solidity 0.4.24;
 
 contract DataTypes{
 
+
+    function DataTypes(){}
     // solidity provides a wide range of sizes from which you should pick the one that suits you better
     // Always Remember size matters.. because it'll cost you more
 
@@ -18,7 +20,7 @@ contract DataTypes{
     function uintExample() returns(uint256){
         uint8 a= 1;
         uint8 b= 2;
-        uint8 c= a+b; // c=3 because it fits in a uin8
+        uint8 c= a+b; // c=3 because it fits ain a uin8
         a = 255;
         b =2;
         c= a + b; // c=1 because 257 does not fit in 8 bits
@@ -103,5 +105,23 @@ contract DataTypes{
         return example;
     }
 
+    // Ether type
+    // The ether type is used for payments it can equal to the correct amount of subunits
+    // ether - 1,000,000,000,000,000 wei (1e18)
+    // finney - 1,000,000,000,000,000 wei (1e15 wei)
+    // szabo - 1,000,000,000,000 wei (1e12 wei)
+    // wei - 1 wei
+    event logEther(uint amount);
+    function etherExample(){
+        uint eth = 1 ether;
+        uint zbo = 1 szabo;
+        uint fnn = 1 finney;
+        uint we = 1 wei;
+
+        emit logEther(eth);
+        emit logEther(fnn);
+        emit logEther(zbo);
+        emit logEther(we);
+    }
 
 }

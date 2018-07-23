@@ -1,17 +1,16 @@
 pragma solidity 0.4.21;
 
 // Interface Equivalent
-contract  Regulator{
+contract  Regulated{
     //Abstract
     function checkValue(uint)  public returns(bool);
-    function loan()  public returns(bool);
 }
 
 // IS == inheritance && IS == implement interface
-contract Bank is Regulator{
-    
+contract User is Regulated{
+
     // Internal == protected
-    a private value;
+    uint internal value;
     address private owner;
 
     // Fucntion modifier, ACL contract owner
@@ -19,11 +18,14 @@ contract Bank is Regulator{
         require(owner == msg.sender);
         _;
     }
-    function Bank(uint amount) public {
+
+    // Super constructor
+    function User(uint money) public {
         owner = msg.sender;
-        value =amount;
+        value =money;
     }
 
+    // Methods
     function deposit(uint amount) public ownerFunc {
         value += amount;
     }
@@ -37,19 +39,21 @@ contract Bank is Regulator{
         return value;
     }
 
+    // Interface implementation
     function checkValue(uint amount) public returns (bool){
         return amount >= value;
     }
 
-    function loan()  public returns (bool){
-        return value>0;
-    }
 }
 
-
-contract myFirstContract is Bank(10){
+contract Client is User(10){
     string private name;
     uint256 private age;
+
+    // Overriten methods
+    function balance() public returns (uint){
+        return value-1;
+    }
 
     function setName(string newName) public {
         name = newName;
