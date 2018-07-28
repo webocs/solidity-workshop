@@ -7,7 +7,7 @@
 contract Ownership{
 
     // Storing the owner
-     address owner;
+    address owner;
 
     // Declaring our own function modifier
     // This modifier requires the msg sender to equal the owner
